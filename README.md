@@ -4,7 +4,7 @@
 
 媒體識讀互動體驗展的提案網站。觀眾以「見習查核員」的身分走進童話王國，先被聳動新聞騙一次，再親手造假、學會查證，最後在個人小報上看見自己的判斷。
 
-**網站：** https://diagonally-above-nanyi.github.io/
+**網站：** [https://diagonally-above-nanyi.github.io/](https://above-nanyi-arrival.github.io/fairytale-news/)
 
 ---
 
