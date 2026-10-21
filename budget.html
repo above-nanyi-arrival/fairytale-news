@@ -96,11 +96,10 @@ th { font-size: 12.5px; color: var(--ink-2); border-bottom: 2px solid var(--rule
 td.num, th.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
 td.item b { font-weight: 700; }
 td.item span { display: block; font-size: 13px; color: var(--ink-2); }
-td.barcell { width: 26%; }
-.mini { height: 8px; background: var(--paper-2); }
-.mini i { display: block; height: 100%; transition: transform 1s cubic-bezier(.2,.7,.2,1); transform-origin: left; }
-.cat.pre .mini i { transform: scaleX(0); }
-@media (max-width: 640px) { td.barcell, th.barcell { display: none; } }
+td.num small { font-family: var(--font-body); font-size: 12.5px; color: var(--ink-2); }
+td.strong { font-weight: 600; }
+.cnote { font-size: 13px; color: var(--ink-2); }
+@media (max-width: 640px) { table { font-size: 13.5px; } th, td { padding: 9px 6px; } td.item span { font-size: 12px; } }
 
 /* grand total */
 .grand { margin-top: 48px; border: 2px solid var(--rule); background: #fff; }
@@ -179,54 +178,53 @@ footer .ft { font-family: var(--font-head); font-weight: 900; font-size: clamp(2
 <script>
 const CATS = [
   { id: "space", name: "空間與展示製作", color: "var(--c1)", items: [
-    ["童話新聞翻板", "雙面印刷，含旋轉五金・12 面", 54000],
-    ["隔間牆木作", "同溫層房間・18 m × 高 3 m", 50400],
-    ["大型投影幕", "深偽劇場・約 8 × 3 m，含框架", 30000],
-    ["沙發／長凳租賃", "深偽劇場・座位約 15 人", 20000],
-    ["展台與工作桌", "報到、標題工廠、查核實驗室、回顧", 60000],
-    ["大圖輸出與指標", "牆面輸出、地貼、動線指標", 80000],
-    ["施工與撤場人工", "木作、輸出安裝、拆除", 60000],
+    ["童話新聞翻板", "雙面印刷，含旋轉五金", 12, "面", 4500],
+    ["隔間牆木作", "同溫層房間，高 3 m", 18, "公尺", 2800],
+    ["大型投影幕", "深偽劇場，約 8 × 3 m，含框架", 1, "式", 30000],
+    ["沙發／長凳租賃", "深偽劇場，座位約 15 人", 5, "組", 4000],
+    ["展台與工作桌", "報到、標題工廠、查核實驗室、回顧", 10, "組", 6000],
+    ["大圖輸出與指標", "牆面輸出、地貼、動線指標", 1, "式", 80000],
+    ["施工與撤場人工", "木作、輸出安裝、拆除", 1, "式", 60000],
   ]},
-  { id: "hw", name: "硬體設備", color: "var(--c2)", items: [
-    ["65 吋電視含立架", "標題工廠 1、王國回顧 2、出口 1・4 台", 60000],
-    ["雷射投影機", "深偽劇場大投影・高流明", 40000],
-    ["高流明投影機含吊架", "截圖偵探 2、同溫層房間 4・6 台", 150000],
-    ["平板電腦", "報到 1、標題工廠 3、查核實驗室 6・10 台", 30000],
-    ["控制電腦", "截圖偵探、同溫層、回顧・3 台", 18000],
-    ["指向性喇叭", "深偽劇場，避免聲音干擾其他區・2 組", 10000],
-    ["網路", "行動路由器或專線・1 個月", 12000],
-    ["影音技術人員", "架設、巡檢與故障排除", 60000],
-    ["設備備品與維修", "線材、電源、故障更換", 20000],
+  { id: "hw", name: "硬體設備", note: "單價為一個月租金", color: "var(--c2)", items: [
+    ["65 吋電視含立架", "標題工廠 1、王國回顧 2、出口 1", 4, "台", 15000],
+    ["雷射投影機", "深偽劇場大投影，高流明", 1, "台", 40000],
+    ["高流明投影機含吊架", "截圖偵探 2、同溫層房間 4", 6, "台", 25000],
+    ["平板電腦", "報到 1、標題工廠 3、查核實驗室 6", 10, "台", 3000],
+    ["控制電腦", "截圖偵探、同溫層、回顧", 3, "台", 6000],
+    ["指向性喇叭", "深偽劇場，避免聲音干擾其他區", 2, "組", 5000],
+    ["網路", "行動路由器或專線", 1, "式", 12000],
+    ["影音技術人員", "架設、巡檢與故障排除", 1, "式", 60000],
+    ["設備備品與維修", "線材、電源、故障更換", 1, "式", 20000],
   ]},
   { id: "sys", name: "系統開發", color: "var(--c3)", items: [
-    ["熱感應收據機", "出口・3 台（含 1 台備用）", 13500],
-    ["NFC 讀卡機", "報到與各站感應・6 台", 7200],
-    ["NFC 實體卡", "長者或無手機觀眾・600 張", 9000],
-    ["雲端資料庫與網域", "查核員證網頁", 3000],
+    ["熱感應收據機", "出口，含 1 台備用", 3, "台", 4500],
+    ["NFC 讀卡機", "報到與各站感應", 6, "個", 1200],
+    ["NFC 實體卡", "長者或無手機觀眾", 600, "張", 15],
+    ["雲端資料庫與網域", "查核員證網頁", 1, "式", 3000],
   ]},
   { id: "content", name: "內容製作", color: "var(--c4)", items: [
-    ["童話角色插畫與動畫", "新聞牆、截圖偵探、同溫層素材", 80000],
-    ["深偽影片製作", "約 5 分鐘輪播影片：演員、拍攝、合成", 40000],
-    ["題目與教案審訂", "邀請查核單位或教師諮詢", 15000],
+    ["童話角色插畫與動畫", "新聞牆、截圖偵探、同溫層素材", 1, "式", 80000],
+    ["深偽影片製作", "約 5 分鐘輪播影片：演員、拍攝、合成", 1, "式", 40000],
+    ["題目與教案審訂", "邀請查核單位或教師諮詢", 1, "式", 15000],
   ]},
   { id: "print", name: "印刷與宣傳", color: "var(--c5)", items: [
-    ["查核步驟小卡", "5,000 張", 15000],
-    ["感熱收據紙", "30 捲", 1800],
-    ["陪伴指南", "教師教案與家長陪伴指南・500 份", 15000],
-    ["海報與 DM", "學校宣傳", 20000],
+    ["查核步驟小卡", "出口發放", 5000, "張", 3],
+    ["感熱收據紙", "出口收據機", 30, "捲", 60],
+    ["陪伴指南", "教師教案與家長陪伴指南", 500, "份", 30],
+    ["海報與 DM", "學校宣傳", 1, "式", 20000],
   ]},
   { id: "ops", name: "營運與評估", color: "var(--c6)", items: [
-    ["現場工作人員", "3 人 × 26 天 × 8 小時", 124800],
-    ["工作人員餐費", "現場 3 人 × 26 天，另加進撤場", 13500],
-    ["公共意外責任險", "1 個月", 15000],
-    ["貨運", "進場、撤場各一趟", 16000],
+    ["現場工作人員", "3 人 × 26 天 × 8 小時", 624, "人時", 200],
+    ["工作人員餐費", "現場 3 人 × 26 天，另加進撤場", 90, "人次", 150],
+    ["公共意外責任險", "1 個月", 1, "式", 15000],
+    ["貨運", "進場、撤場各一趟", 2, "趟", 8000],
   ]},
 ];
 const fmt = n => n.toLocaleString("en-US");
 const sum = a => a.reduce((x, y) => x + y, 0);
-CATS.forEach(c => c.total = sum(c.items.map(i => i[2])));
+CATS.forEach(c => { c.items.forEach(i => i[5] = i[2] * i[4]); c.total = sum(c.items.map(i => i[5])); });
 const SUB = sum(CATS.map(c => c.total)), RES = Math.round(SUB * 0.1), ALL = SUB + RES;
-const maxItem = Math.max(...CATS.flatMap(c => c.items.map(i => i[2])));
 document.getElementById("itemcount").textContent = CATS.reduce((n, c) => n + c.items.length, 0) + " 項";
 
 // nav + legend + stack
@@ -240,12 +238,14 @@ document.getElementById("stack").innerHTML = CATS.map(c =>
 document.getElementById("cats").innerHTML = CATS.map(c => `
   <section class="cat pre" id="${c.id}" aria-labelledby="${c.id}-h">
     <div class="cat-head"><h2 id="${c.id}-h"><i style="background:${c.color}"></i>${c.name}</h2><span class="amt">${fmt(c.total)}<small>${(c.total / SUB * 100).toFixed(1)}%</small></span></div>
+    ${c.note ? `<p class="cnote">${c.note}</p>` : ""}
     <table>
-      <thead><tr><th>項目</th><th class="barcell" aria-hidden="true"></th><th class="num">金額（元）</th></tr></thead>
-      <tbody>${c.items.map(([n, d, v]) => `
+      <thead><tr><th>項目</th><th class="num">數量</th><th class="num">單價</th><th class="num">小計（元）</th></tr></thead>
+      <tbody>${c.items.map(([n, d, q, u, pr, t]) => `
         <tr><td class="item"><b>${n}</b><span>${d}</span></td>
-        <td class="barcell" aria-hidden="true"><div class="mini"><i style="width:${(v / maxItem * 100).toFixed(1)}%;background:${c.color}"></i></div></td>
-        <td class="num">${fmt(v)}</td></tr>`).join("")}
+        <td class="num">${fmt(q)} <small>${u}</small></td>
+        <td class="num">${fmt(pr)}</td>
+        <td class="num strong">${fmt(t)}</td></tr>`).join("")}
       </tbody>
     </table>
   </section>`).join("");
